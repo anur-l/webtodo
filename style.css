@@ -16,7 +16,8 @@ h1 {
  background-color: rgba(100, 131, 100,0.9);
  padding: 2rem; 
  border-radius: 9px;
- box-shadow: 0 4px 4px rgba(100,100,100,0.9); 
+ box-shadow: 0 4px 4px rgba(100,100,100,0.9);
+ gap: 1rem; 
 }
 .get{
 display: flex;
@@ -25,14 +26,23 @@ display: flex;
 button{
  background-color: #a4b8a0;
  border-radius: 9px; 
-border: none;
+ border: none;
+ width: 40px;
+ height: 30px; 
 }
 
 button:hover{
- transform: scale(1.05); 
+ transform: scale(1.05);
+ background-color: lightgreen; 
 }
 
 input{
  border-radius: 7px;
+ margin-bottom: 1rem;
+ padding: 0.3rem;
+  
+}
+ul {
+ gap:10px
 }
 
