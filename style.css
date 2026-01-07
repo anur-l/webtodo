@@ -5,5 +5,34 @@ body{
  display: flex;
  flex-direction: column; 
  align-items: center; 
- background-color: rgba(100,100,100,0.1); 
 }
+
+h1 {
+  color: #333;
+  text-transform: uppercase;
+}
+
+.box{
+ background-color: rgba(100, 131, 100,0.9);
+ padding: 2rem; 
+ border-radius: 9px;
+ box-shadow: 0 4px 4px rgba(100,100,100,0.9); 
+}
+.get{
+display: flex;
+ gap: 10px;
+}
+button{
+ background-color: #a4b8a0;
+ border-radius: 9px; 
+border: none;
+}
+
+button:hover{
+ transform: scale(1.05); 
+}
+
+input{
+ border-radius: 7px;
+}
+
