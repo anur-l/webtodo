@@ -1,6 +1,7 @@
+/** @type {HTMLInputElement} */
 const task = document.querySelector(".tasks");
 const btnadd = document.querySelector(".adding");
-const listt = document.querySelector("ul");
+const listing = document.querySelector("ul");
 btnadd.addEventListener("click", function() {
   const userinput = task.value;
   if (userinput !== "") {
@@ -11,10 +12,22 @@ btnadd.addEventListener("click", function() {
     newli.textContent = userinput;
     newli.style.paddingRight = "4rem";
     const delbtn = document.createElement("button");
+    delbtn.classList.add("del");
     delbtn.textContent = "x";
     divlist.appendChild(newli);
     divlist.appendChild(delbtn);
-    listt.appendChild(divlist);
+    listing.appendChild(divlist); 
   }
   task.value = "";
 });
+
+listing.addEventListener('click', function(event) {
+ 
+  if(event.target.classList.contains("del")){
+    const removeitem = event.target.parentElement;
+    if (removeitem) {
+      removeitem.remove();
+    }
+  }
+
+})
