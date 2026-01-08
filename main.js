@@ -3,6 +3,8 @@ const task = document.querySelector(".tasks");
 const btnadd = document.querySelector(".adding");
 const listing = document.querySelector(".items");
 function reading(userinput) {
+  const text = typeof userinput === "string" ? userinput : userinput.text;
+  const iscomp = typeof userinput === "string" ? false : userinput.completed;
   const divlist = document.createElement("div");
   divlist.style.display = "flex";
   divlist.style.justifyContent = "space-between";
@@ -15,11 +17,17 @@ function reading(userinput) {
   const cbox = document.createElement("input");
   cbox.type = "checkbox";
   cbox.classList.add("cbox");
+  cbox.checked = iscomp;
 
   const newp = document.createElement("p");
   newp.classList.add("todopara");
-  newp.textContent = userinput;
+  newp.textContent = text;
   newp.style.paddingRight = "4rem";
+  
+  if (iscomp) {
+    newp.style.textDecoration = "line-through";
+    newp.style.color = "grey";
+  }
 
   const delbtn = document.createElement("button");
   delbtn.classList.add("del");
@@ -32,14 +40,14 @@ function reading(userinput) {
   listing.appendChild(divlist);
   cbox.addEventListener("change", () => {
     if (cbox.checked) {
-      newp.style.textDecoration = 'line-through';
-      newp.style.color = 'grey';
-    }else {
-    newp.style.textDecoration = 'none';
-    newp.style.color = 'black';
-  }
+      newp.style.textDecoration = "line-through";
+      newp.style.color = "grey";
+    } else {
+      newp.style.textDecoration = "none";
+      newp.style.color = "black";
+    }
+    updatelist();
   });
-  userinput.value = "";
 }
 window.onload = () => {
   const saveti = localStorage.getItem("todolist");
@@ -55,7 +63,7 @@ btnadd.addEventListener("click", function() {
   const userinput = task.value;
   if (userinput !== "") {
     reading(userinput);
-    updatelist(userinput);
+    updatelist();
   }
   task.value = "";
 });
@@ -64,17 +72,23 @@ listing.addEventListener("click", function(event) {
   if (event.target.classList.contains("del")) {
     const removeitem = event.target.parentElement;
     if (removeitem) {
-      let deleteitem = removeitem.querySelector(".todopara").textContent;
       removeitem.remove();
-      removelist(deleteitem);
+      updatelist();
     }
   }
 });
 
-function updatelist(todo) {
-  const check = localStorage.getItem("todolist");
-  const items = JSON.parse(check || "[]");
-  items.push(todo);
+function updatelist() {
+  const items = [];
+  const alltasks = document.querySelectorAll(".boxtodo");
+
+  alltasks.forEach((box) => {
+    const text = box.querySelector(".todopara").textContent;
+    const checkbox = box.querySelector(".cbox").checked;
+
+    items.push({ text: text, completed: checkbox });
+  });
+
   localStorage.setItem("todolist", JSON.stringify(items));
 }
 
