@@ -1,10 +1,14 @@
-*{
- margin: 0rem;
+* {
+  margin: 0rem;
+  box-sizing: border-box;
 }
-body{
- display: flex;
- flex-direction: column; 
- align-items: center; 
+
+body {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8fafc;
 }
 
 h1 {
@@ -12,49 +16,95 @@ h1 {
   text-transform: uppercase;
 }
 
-.box{
- background-color: rgba(100, 131, 100,0.9);
- padding: 2rem; 
- border-radius: 9px;
- box-shadow: 0 4px 4px rgba(100,100,100,0.9);
- gap: 1rem; 
-}
-.get{
-display: flex;
- gap: 10px;
-}
-button{
- background-color: #a4b8a0;
- border-radius: 9px; 
- border: none;
- width: 40px;
- height: 30px; 
+.box {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 9px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  gap: 1rem;
 }
 
-button:hover{
- transform: scale(1.05);
- background-color: lightgreen; 
+.get {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
 }
 
-input{
- border-radius: 7px;
- margin-bottom: 1rem;
- padding: 0.3rem;
-  
+button {
+  background-color: #a4b8a0;
+  border-radius: 9px;
+  outline: none;
+  border: none;
 }
+
+button:hover {
+  transform: scale(1.05);
+  background-color: lightgreen;
+}
+
+.adding {
+  width: 40px;
+  height: 50px;
+}
+
+.del {
+  width: 60px;
+  height: 30px;
+}
+
+input {
+  border-radius: 7px;
+  margin-bottom: 1rem;
+  padding: 0.3rem;
+}
+
 ul {
- gap:10px
+  gap: 10px;
 }
 
 .tasks {
-    padding: 12px 15px;
-    border-radius: 8px;
-    border: 1px solid #000;
-    font-size: 16px;
-    outline: none;
-    transition: border 0.9s ease;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 2px solid #e1e4e8;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.9s ease;
 }
 
 .tasks:focus {
-    border-color: #4CAF50; /* Changes color when you click in it */
+  border-color: #4caf50;
+}
+
+.cbox {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 1.25rem;
+  width: 1.25rem;
+  outline: none;
+  background-color: white;
+  border: 2px solid #4caf50;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cbox:checked {
+  background-color: limegreen;
+}
+
+.cbox:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 0.8rem;
+}
+
+.boxtodo {
+  min-height: 50px;
+  border-left: 8px solid green;
+  padding-top: 0.5rem;
+  border-radius: 8px;
+  margin: 0.3rem;
 }
