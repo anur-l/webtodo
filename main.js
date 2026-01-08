@@ -64,6 +64,8 @@ btnadd.addEventListener("click", function() {
   if (userinput !== "") {
     reading(userinput);
     updatelist();
+  }else{
+  alert("Empty task...");
   }
   task.value = "";
 });
@@ -92,9 +94,3 @@ function updatelist() {
   localStorage.setItem("todolist", JSON.stringify(items));
 }
 
-function removelist(remove) {
-  const check = localStorage.getItem("todolist");
-  let items = JSON.parse(check || "[]");
-  items = items.filter((items) => items !== remove);
-  localStorage.setItem("todolist", JSON.stringify(items));
-}
