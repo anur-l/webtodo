@@ -1,19 +1,28 @@
 /** @type {HTMLInputElement} */
 const task = document.querySelector(".tasks");
 const btnadd = document.querySelector(".adding");
-const listing = document.querySelector("ul");
-
+const listing = document.querySelector(".items");
 function reading(userinput) {
   const divlist = document.createElement("div");
   divlist.style.display = "flex";
   divlist.style.justifyContent = "space-between";
-  const newli = document.createElement("li");
-  newli.textContent = userinput;
-  newli.style.paddingRight = "4rem";
+  const divpara = document.createElement("div");
+  divpara.style.display = "flex";
+  divpara.style.gap = "0.4rem";
+  const cbox = document.createElement("input");
+  cbox.type = "checkbox";
+  
+  const newp = document.createElement("p");
+  newp.classList.add("todopara");
+  newp.textContent = userinput;
+  newp.style.paddingRight = "4rem";
   const delbtn = document.createElement("button");
   delbtn.classList.add("del");
   delbtn.textContent = "x";
-  divlist.appendChild(newli);
+  divpara.appendChild(cbox);
+  divpara.appendChild(newp);
+
+  divlist.appendChild(divpara);
   divlist.appendChild(delbtn);
   listing.appendChild(divlist);
 }
@@ -40,7 +49,9 @@ listing.addEventListener("click", function(event) {
   if (event.target.classList.contains("del")) {
     const removeitem = event.target.parentElement;
     if (removeitem) {
+      let deleteitem = removeitem.querySelector(".todopara").textContent;
       removeitem.remove();
+      removelist(deleteitem);
     }
   }
 });
@@ -49,5 +60,12 @@ function updatelist(todo) {
   const check = localStorage.getItem("todolist");
   const items = JSON.parse(check || "[]");
   items.push(todo);
+  localStorage.setItem("todolist", JSON.stringify(items));
+}
+
+function removelist(remove) {
+  const check = localStorage.getItem("todolist");
+  let items = JSON.parse(check || "[]");
+  items = items.filter((items) => items !== remove);
   localStorage.setItem("todolist", JSON.stringify(items));
 }

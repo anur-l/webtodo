@@ -46,3 +46,15 @@ ul {
  gap:10px
 }
 
+.tasks {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.9s ease;
+}
+
+.tasks:focus {
+    border-color: #4CAF50; /* Changes color when you click in it */
+}
